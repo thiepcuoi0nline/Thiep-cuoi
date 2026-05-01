@@ -195,7 +195,10 @@ pre {
 
 /* ========== POPUPS ========== */
 #initial_popup {
-    background-color: #e8e3dc;
+    background-image: url('images/initial_image.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -203,86 +206,25 @@ pre {
     justify-content: center;
     cursor: pointer;
     position: relative;
-    padding: 20px;
     animation: popupFadeIn 1.2s ease-out forwards;
-    gap: 4px;
 }
 
 @keyframes popupFadeIn {
     from {
         opacity: 0;
-        transform: translateY(16px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
-#popup_text_top {
-    font-family: 'Playfair Display', 'Faustina', serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    color: #6b4e2a;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    text-align: center;
-}
-
-#popup_name {
-    font-family: 'Dancing Script', 'Pinyon Script', cursive;
-    font-size: 52px;
-    font-weight: 700;
-    color: #5a3e1b;
-    line-height: 1.1;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
 #evelope_card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin: 8px 0;
-    transition: transform 0.35s ease;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
 }
 
-#evelope_card:hover {
-    transform: scale(1.04);
-}
-
-#envelope_img {
-    width: 280px;
-    max-width: 88vw;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 8px 32px rgba(90,62,27,0.18));
-    animation: envelopeFloat 3.5s ease-in-out infinite;
-}
-
-@keyframes envelopeFloat {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-8px); }
-}
-
-#popup_text_bottom {
-    font-family: 'Playfair Display', 'Faustina', serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    color: #8f7748;
-    text-transform: uppercase;
-    text-align: center;
-    margin-top: 6px;
-    opacity: 0.85;
-}
-
-@media screen and (max-width: 768px) {
-    #popup_name { font-size: 40px; }
-    #envelope_img { width: 240px; }
-}
 
 /* ========== TEXT STYLES ========== */
 .text-inform {
