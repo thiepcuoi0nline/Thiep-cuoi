@@ -29,17 +29,17 @@ input, textarea, select, iframe {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip; /* Mạnh hơn hidden - chặn tuyệt đối mọi scroll ngang */
 }
 
 body {
     background-color: var(--background-color);
     color: var(--main-color);
     font-family: Faustina, serif;
-    max-width: 520px;
+    max-width: min(520px, 100vw); /* Không bao giờ vượt quá chiều rộng màn hình */
     margin: auto;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 pre {
