@@ -12,6 +12,12 @@ img {
     height: auto;
 }
 
+/* Đảm bảo form elements và iframe không tràn ngang */
+input, textarea, select, iframe {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 :root {
     --main-color: #8f7748;
     --second-color: #606060;
