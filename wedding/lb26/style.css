@@ -227,8 +227,8 @@ pre {
 /* Icon tính % theo ảnh → nhất quán mọi màn hình */
 #hand_click_icon {
     position: absolute;
-    top: 62%;
-    left: 59%;
+    top: 65%;
+    left: 62%;
     transform: translate(-50%, -50%);
     width: 55px;
     height: auto;
