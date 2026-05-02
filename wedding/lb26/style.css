@@ -13,7 +13,10 @@ img {
 }
 
 /* Đảm bảo form elements và iframe không tràn ngang */
-input, textarea, select, iframe {
+input,
+textarea,
+select,
+iframe {
     max-width: 100% !important;
     width: 100%;
     box-sizing: border-box;
@@ -29,14 +32,16 @@ input, textarea, select, iframe {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: clip; /* Mạnh hơn hidden - chặn tuyệt đối mọi scroll ngang */
+    overflow-x: clip;
+    /* Mạnh hơn hidden - chặn tuyệt đối mọi scroll ngang */
 }
 
 body {
     background-color: var(--background-color);
     color: var(--main-color);
     font-family: Faustina, serif;
-    max-width: min(520px, 100vw); /* Không bao giờ vượt quá chiều rộng màn hình */
+    max-width: min(520px, 90vw);
+    /* Không bao giờ vượt quá chiều rộng màn hình */
     margin: auto;
     min-height: 100vh;
     overflow-x: clip;
