@@ -89,22 +89,21 @@ function openInvitation() {
 // ========== COUNTDOWN ==========
 function updateCountdown() {
     const now = new Date();
-    const diff = WEDDING_DATE - now;
+    let diff = WEDDING_DATE - now;
+    
+    const titleEl = document.getElementById('countdown-title');
 
-    if (diff <= 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-
-        const panel = document.querySelector('.inform-section');
-        if (panel) {
-            const msg = document.createElement('div');
-            msg.style = 'font-family:Dancing Script,cursive; font-size:22px; color:#8f7748; text-align:center; margin-top:15px;';
-            msg.textContent = '🎉 Hôm nay là ngày trọng đại! 🎉';
-            panel.appendChild(msg);
+    if (diff < 0) {
+        // Quá ngày -> Đếm tiến
+        diff = now - WEDDING_DATE;
+        if (titleEl) {
+            titleEl.textContent = 'CHÚNG MÌNH ĐÃ CHUNG ĐÔI ĐƯỢC';
         }
-        return;
+    } else {
+        // Đếm ngược
+        if (titleEl) {
+            titleEl.textContent = 'ĐẾM NGƯỢC TỚI NGÀY TRỌNG ĐẠI';
+        }
     }
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
