@@ -32,19 +32,17 @@ iframe {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: clip;
-    /* Mạnh hơn hidden - chặn tuyệt đối mọi scroll ngang */
+    overflow-x: hidden;
 }
 
 body {
     background-color: var(--background-color);
     color: var(--main-color);
     font-family: Faustina, serif;
-    max-width: min(520px, 100vw);
-    /* Không bao giờ vượt quá chiều rộng màn hình */
+    max-width: min(520px, 100%);
     margin: auto;
     min-height: 100vh;
-    overflow-x: clip;
+    overflow-x: hidden;
 }
 
 pre {
