@@ -1,8 +1,8 @@
 // ========== WEDDING INVITATION SCRIPT ==========
-// Tuan & Trang's Wedding - 20/09/2025
+// Bach & Linh's Wedding - 28/05/2026
 
 // ========== CONFIG ==========
-const WEDDING_DATE = new Date('2025-09-20T11:00:00+07:00');
+const WEDDING_DATE = new Date('2026-05-28T10:00:00+07:00');
 let currentSlide = 0;
 let totalSlides = 11;
 let carouselInterval;
