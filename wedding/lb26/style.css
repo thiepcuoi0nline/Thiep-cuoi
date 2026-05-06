@@ -214,6 +214,9 @@ pre {
     background-color: var(--background-color);
     color: var(--main-color);
     font-family: Faustina, serif;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .bg-default {
