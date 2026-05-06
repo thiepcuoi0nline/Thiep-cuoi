@@ -355,9 +355,7 @@ function renderWishList() {
     container.innerHTML = wishes.map(wish => `
         <div class="wish-list-item" style="padding:15px; border-bottom:1px solid #f0e8d0;">
             <div style="display:flex; align-items:flex-start; gap:10px;">
-                <div style="width:36px; height:36px; border-radius:50%; background:${wish.color}; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:16px; color:white; font-weight:700;">
-                    ${wish.name.charAt(0).toUpperCase()}
-                </div>
+                <img src="images/stamp.jpg" alt="" style="width:36px; height:36px; border-radius:50%; flex-shrink:0; object-fit:cover;">
                 <div style="flex:1;">
                     <div style="font-family:Faustina, serif; font-weight:700; font-size:14px; color:#8f7748;">${escapeHtml(wish.name)}</div>
                     <div style="font-family:Faustina, serif; font-size:13px; color:#606060; margin-top:4px; line-height:1.6;">${escapeHtml(wish.content)}</div>
