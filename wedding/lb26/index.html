@@ -191,7 +191,7 @@
             flex-direction: column;
             align-items: center;
             gap: 40px;
-            padding: 55% 20px 60px;
+            padding: 40% 20px 60px;
         }
 
         #section_qr_bank .bg-img {
@@ -225,6 +225,27 @@
             color: var(--main-color);
             line-height: 1.5;
             text-transform: uppercase;
+        }
+
+        .account-number {
+            display: inline-block;
+            margin-top: 8px;
+            background: rgba(255,255,255,0.85);
+            border: 1px solid #c9a87c;
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #8f7748;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: background 0.2s, transform 0.1s;
+            user-select: none;
+        }
+
+        .account-number:active {
+            transform: scale(0.95);
+            background: #f0e8d0;
         }
 
         /* Wish list */
@@ -710,6 +731,7 @@
                     <span style="display:block;">Nguyen Viet Bach</span>
                     <br>
                     <span style="display:block;">TpBank</span>
+                    <span class="account-number" onclick="copyAccount(this, '05836585301')">05836585301 📋</span>
                 </div>
             </div>
 
@@ -720,6 +742,7 @@
                     <span style="display:block;">Nguyen Thi Khanh Linh</span>
                     <br>
                     <span style="display:block;">TpBank</span>
+                    <span class="account-number" onclick="copyAccount(this, '20943162265')">20943162265 📋</span>
                 </div>
             </div>
         </section>

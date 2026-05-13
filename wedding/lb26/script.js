@@ -483,3 +483,31 @@ document.addEventListener('visibilitychange', function () {
         music.play().catch(() => { });
     }
 });
+
+// ========== COPY ACCOUNT NUMBER ==========
+function copyAccount(el, accountNumber) {
+    navigator.clipboard.writeText(accountNumber).then(function () {
+        const original = el.textContent;
+        el.textContent = '✅ Đã sao chép!';
+        el.style.background = '#d4edda';
+        el.style.borderColor = '#8f7748';
+        setTimeout(function () {
+            el.textContent = original;
+            el.style.background = '';
+            el.style.borderColor = '';
+        }, 2000);
+    }).catch(function () {
+        // Fallback cho trình duyệt cũ
+        const ta = document.createElement('textarea');
+        ta.value = accountNumber;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const original = el.textContent;
+        el.textContent = '✅ Đã sao chép!';
+        setTimeout(function () { el.textContent = original; }, 2000);
+    });
+}
