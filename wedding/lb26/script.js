@@ -4,7 +4,7 @@
 // ========== CONFIG ==========
 const WEDDING_DATE = new Date('2026-05-28T10:00:00+07:00');
 let currentSlide = 0;
-let totalSlides = 11;
+let totalSlides = 8;
 let carouselInterval;
 let musicPlaying = false;
 // ========== WISHES (Google Sheets) ==========
