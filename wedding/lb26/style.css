@@ -496,16 +496,6 @@ input[type="radio"]:checked+.guest-count-btn {
 
 /* ========== QR SECTION ========== */
 #section_qr_bank {
-    background-image: url('images/bg_qr_bank.webp');
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-color: var(--background-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    padding: 45% 20px 60px;
     overflow: hidden;
 }
 
