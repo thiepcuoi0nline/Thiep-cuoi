@@ -186,22 +186,26 @@
         #section_qr_bank {
             position: relative;
             overflow: hidden;
-            background-color: var(--background-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-            padding: 40% 20px 60px;
+            width: 100%;
         }
 
         #section_qr_bank .bg-img {
-            position: absolute;
-            inset: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
+            height: auto;
+            display: block;
             z-index: 0;
+        }
+
+        #qr_content {
+            position: absolute;
+            bottom: 5%;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            z-index: 1;
         }
 
         #qr_groom,
@@ -725,25 +729,27 @@
         <!-- ====== 9. QR MỪNG CƯỚI ====== -->
         <section id="section_qr_bank">
             <img src="images/bg_qr_bank.webp" class="bg-img" alt="" loading="lazy">
-            <!-- QR Chú rể -->
-            <div id="qr_groom">
-                <img src="images/qr_groom.webp" alt="QR Chú rể" class="qr-img">
-                <div class="text_info_bank">
-                    <span style="display:block;">Nguyen Viet Bach</span>
-                    <br>
-                    <span style="display:block;">TpBank</span>
-                    <span class="account-number" onclick="copyAccount(this, '05836585301')">05836585301 📋</span>
+            <div id="qr_content">
+                <!-- QR Chú rể -->
+                <div id="qr_groom">
+                    <img src="images/qr_groom.webp" alt="QR Chú rể" class="qr-img">
+                    <div class="text_info_bank">
+                        <span style="display:block;">Nguyen Viet Bach</span>
+                        <br>
+                        <span style="display:block;">TpBank</span>
+                        <span class="account-number" onclick="copyAccount(this, '05836585301')">05836585301 📋</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- QR Cô dâu -->
-            <div id="qr_bride">
-                <img src="images/qr_bride.webp" alt="QR Cô dâu" class="qr-img">
-                <div class="text_info_bank">
-                    <span style="display:block;">Nguyen Thi Khanh Linh</span>
-                    <br>
-                    <span style="display:block;">TpBank</span>
-                    <span class="account-number" onclick="copyAccount(this, '20943162265')">20943162265 📋</span>
+                <!-- QR Cô dâu -->
+                <div id="qr_bride">
+                    <img src="images/qr_bride.webp" alt="QR Cô dâu" class="qr-img">
+                    <div class="text_info_bank">
+                        <span style="display:block;">Nguyen Thi Khanh Linh</span>
+                        <br>
+                        <span style="display:block;">TpBank</span>
+                        <span class="account-number" onclick="copyAccount(this, '20943162265')">20943162265 📋</span>
+                    </div>
                 </div>
             </div>
         </section>
