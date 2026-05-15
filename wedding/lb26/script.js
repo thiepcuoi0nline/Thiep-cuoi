@@ -370,7 +370,7 @@ function submitWish() {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     const now = new Date();
     const pad = n => String(n).padStart(2, '0');
-    const timeStr = `${pad(now.getDate())}-${pad(now.getMonth() + 1)}-${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+    const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())} ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
     const wish = { name, content, time: timeStr, color: randomColor };
 
     // Hiển thị ngay (optimistic UI)
@@ -382,6 +382,27 @@ function submitWish() {
 
     // Gửi lên Google Sheets (sẽ tải lại khi xong)
     postWishToSheets(wish);
+}
+
+function formatWishTime(timeStr) {
+    if (!timeStr) return '';
+    // Convert "DD-MM-YYYY HH:mm" -> "HH:mm DD/MM/YYYY"
+    let m = timeStr.match(/^(\d{2})-(\d{2})-(\d{4})\s+(\d{2}):(\d{2})$/);
+    if (m) return `${m[4]}:${m[5]} ${m[1]}/${m[2]}/${m[3]}`;
+    
+    // Convert "HH:mm, DD/MM" -> "HH:mm DD/MM/2026"
+    m = timeStr.match(/^(\d{2}):(\d{2}),\s+(\d{2})\/(\d{2})$/);
+    if (m) return `${m[1]}:${m[2]} ${m[3]}/${m[4]}/2026`;
+
+    // Convert standard Date string
+    const d = new Date(timeStr);
+    if (!isNaN(d.getTime())) {
+        const pad = n => String(n).padStart(2, '0');
+        return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
+    }
+    
+    // Fallback if none matched
+    return timeStr.replace(/-/g, '/');
 }
 
 function renderWishList() {
@@ -400,7 +421,7 @@ function renderWishList() {
                 <div style="flex:1;">
                     <div style="font-family:Faustina, serif; font-weight:700; font-size:14px; color:#8f7748;">${escapeHtml(wish.name)}</div>
                     <div style="font-family:Faustina, serif; font-size:13px; color:#606060; margin-top:4px; line-height:1.6;">${escapeHtml(wish.content)}</div>
-                    <div style="font-family:Faustina, serif; font-size:11px; color:#b0a090; margin-top:4px;">${wish.time}</div>
+                    <div style="font-family:Faustina, serif; font-size:11px; color:#b0a090; margin-top:4px;">${formatWishTime(wish.time)}</div>
                 </div>
             </div>
         </div>
