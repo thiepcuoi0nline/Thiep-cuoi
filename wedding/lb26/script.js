@@ -3,7 +3,7 @@
 
 // ========== CONFIG ==========
 const WEDDING_DATE = new Date('2026-05-28T10:00:00+07:00');
-let currentSlide = 0;
+let currentSlide = 1;
 let totalSlides = 8;
 let carouselInterval;
 let musicPlaying = false;
@@ -118,34 +118,75 @@ function updateCountdown() {
 }
 
 // ========== CAROUSEL (track horizontal slide) ==========
-let prevSlideIndex = 0;
+let isTransitioning = false;
+
+window.addEventListener('load', function() {
+    initCarouselInfinite();
+});
+
+function initCarouselInfinite() {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+    
+    const slides = Array.from(track.children);
+    if (slides.length <= 1) return;
+
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
+
+    firstClone.id = 'first-clone';
+    lastClone.id = 'last-clone';
+
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, slides[0]);
+
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-100%)`;
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        
+        if (currentSlide === totalSlides + 1) { 
+            track.style.transition = 'none';
+            currentSlide = 1;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        if (currentSlide === 0) { 
+            track.style.transition = 'none';
+            currentSlide = totalSlides;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+    });
+}
 
 function updateCarousel() {
     var track = document.getElementById('carousel-track');
     if (track) {
+        track.style.transition = 'transform 0.7s ease-in-out';
         track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
     }
-    // Update dots
-    document.querySelectorAll('#carousel-dots button').forEach(function (dot, idx) {
-        dot.style.background = idx === currentSlide ? 'white' : 'rgba(255,255,255,0.7)';
-        dot.style.transform = idx === currentSlide ? 'scale(1.3)' : 'scale(1)';
-    });
 }
 
 function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
+    if (isTransitioning) return;
+    isTransitioning = true;
+    currentSlide++;
     updateCarousel();
     resetAutoplay();
 }
 
 function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    if (isTransitioning) return;
+    isTransitioning = true;
+    currentSlide--;
     updateCarousel();
     resetAutoplay();
 }
 
 function goToSlide(n) {
-    currentSlide = n;
+    if (isTransitioning) return;
+    currentSlide = n + 1;
     updateCarousel();
     resetAutoplay();
 }
@@ -153,17 +194,16 @@ function goToSlide(n) {
 function startCarousel() {
     clearInterval(carouselInterval);
     carouselInterval = setInterval(function () {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
+        if (!isTransitioning) {
+            isTransitioning = true;
+            currentSlide++;
+            updateCarousel();
+        }
     }, 4000);
 }
 
 function resetAutoplay() {
-    clearInterval(carouselInterval);
-    carouselInterval = setInterval(function () {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-    }, 4000);
+    startCarousel();
 }
 
 // ========== MUSIC ==========
